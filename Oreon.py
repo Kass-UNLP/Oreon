@@ -4,50 +4,78 @@
 from sys import stdin, stdout
 
 
-
 # Auxiliar dict for the purpose of printing the result in the correct format
 to_letter = {
-    0: "A",
-    1: "B",
-    2: "C",
-    3: "D",
-    4: "E",
-    5: "F",
-    6: "G",
-    7: "H",
-    8: "I",
-    9: "J",
-    10: "K",
-    11: "L",
-    12: "M",
-    13: "N",
-    14: "O",
-    15: "P",
-    16: "Q",
-    17: "R",
-    18: "S",
-    19: "T",
-    20: "U",
-    21: "V",
-    22: "W",
-    23: "X",
-    24: "Y",
-    25: "Z"
+    1: "A",
+    2: "B",
+    3: "C",
+    4: "D",
+    5: "E",
+    6: "F",
+    7: "G",
+    8: "H",
+    9: "I",
+    10: "J",
+    11: "K",
+    12: "L",
+    13: "M",
+    14: "N",
+    15: "O",
+    16: "P",
+    17: "Q",
+    18: "R",
+    19: "S",
+    20: "T",
+    21: "U",
+    22: "V",
+    23: "W",
+    24: "X",
+    25: "Y",
+    26: "Z"
 }
+
+def prettify(MSTGraph):
+    global to_letter
+    
+    for elem in MSTGraph:
+        elem[0] = to_letter[elem[0]]
+        elem[1] = to_letter[elem[1]]
+    
+    return MSTGraph
+
+
 
 iter = int(stdin.readline())
 
 for i in range(1, iter + 1):
-    number_of_cities = int(stdin.readline())
+    number_of_vertex = int(stdin.readline())
     
-    # Maybe graph = []*number_of_cities is more appropriate, see later how it behaves
-    graph = [[0]*number_of_cities]*number_of_cities
+    graph = []
     
-    for i in range(number_of_cities):
-        graph[i] = [int(x) for x in stdin.readline().split(', ')]
-    
-    for row in graph:
-        print(row)
+    ## Proceed to adapt input graph to a (x, y, v) format, where x and y are vertex and v is the weight of the connection.
+    for x in range(number_of_vertex):
+        aux = [int(z) for z in stdin.readline().split(', ')]
+        
+        print(aux)
+        
+        x += 1
+        y = 0
+        v = 0
+        
+        for conn in aux:
+            print(conn)
+            
+            y += 1
+            
+            if conn != 0:
+                v = conn
+                graph.append([x, y, v])
+
+    print(prettify(graph))
         
     ## ----> Reading of variables is tested and confirmed done correctly
+    ## ----> Conversion of input is tested and confirmed done correctly
+    ## ----> Prettyfi method is tested and confirmed done correctly
+    
+    
     pass
