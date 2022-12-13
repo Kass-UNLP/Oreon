@@ -1,6 +1,4 @@
 # Oreon
-
-
 from sys import stdin, stdout
 
 
@@ -33,6 +31,65 @@ to_letter = {
     25: "Y",
     26: "Z"
 }
+
+def find(parent, i):
+    if parent[i] != i:
+        parent[i] = find(parent, parent[i])
+        
+    return parent[i]
+
+def union(parent, rank, x, y):
+    if rank[x] < rank[y]:
+        parent[x] = y
+        
+    elif rank[x] > rank[y]:
+        parent[y] = x
+
+    else:
+        parent[y] = x
+        rank[x] += 1
+
+
+def KruskalMST(V, graph):
+    i = 0
+    j = 0
+    MST_graph = []
+
+    # Sorting non-decreasing as was found online.
+    aux_graph = sorted(graph, key=lambda item: item[2])
+    
+    # print(aux_graph)
+
+    parent = []
+    rank = []
+
+    # Using V+1 to avoid bugs, pos 0 of list is unused
+    for node in range(V+1):
+        parent.append(node)
+        rank.append(0)
+
+    # Edges = V-1
+    while j < (V - 1):
+        try:
+            u, v, w = aux_graph[i]  
+        except:
+            break
+        
+        i = i + 1
+        x = find(parent, u)
+        y = find(parent, v)
+
+        if x != y:
+            j = j + 1
+            MST_graph.append([u, v, w])
+            union(parent, rank, x, y)
+
+    # print("MST:")
+    # for u, v, weight in MST_graph:
+    #     print("Edge from " + str(u) + " to " + str(v) + " with weight " + str(weight))
+    
+    return MST_graph
+
 
 def prettify(MSTGraph):
     global to_letter
@@ -71,11 +128,14 @@ for i in range(1, iter + 1):
                 v = conn
                 graph.append([x, y, v])
 
-    print(prettify(graph))
+    # print(prettify(graph))
+    MSTGraph = KruskalMST(number_of_vertex, graph)
+    print(prettify(MSTGraph))
         
     ## ----> Reading of variables is tested and confirmed done correctly
     ## ----> Conversion of input is tested and confirmed done correctly
     ## ----> Prettyfi method is tested and confirmed done correctly
+    ## ----> Kruskal algorithm inserted, tested with base case shown in premise, confirmed to be working correctly
     
     
     pass
