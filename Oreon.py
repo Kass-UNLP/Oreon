@@ -100,7 +100,6 @@ def prettyPrint(currentIteration, MSTGraph):
     for elem in MSTGraph:
         output += f"{to_letter[elem[0]]}-{to_letter[elem[1]]} {elem[2]}\n"
 
-    output += "\n"
     stdout.write(output)
 
 
