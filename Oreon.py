@@ -138,6 +138,5 @@ for i in range(1, iter + 1):
     ## ----> Prettyfi method is tested and confirmed done correctly
     ## ----> Kruskal algorithm inserted, tested with base case shown in premise, confirmed to be working correctly
     ## ----> Finished adjusting the print function to satisfy the premise, tested and working correctly
-    
-    
-    pass
+    ## ----> Tested edge cases, working as intended
+    ## ----> Accepted by VJudge
