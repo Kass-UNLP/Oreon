@@ -32,6 +32,7 @@ to_letter = {
     26: "Z"
 }
 
+
 def find(parent, i):
     if parent[i] != i:
         parent[i] = find(parent, parent[i])
@@ -91,15 +92,15 @@ def KruskalMST(V, graph):
     return MST_graph
 
 
-def prettify(MSTGraph):
+def prettyPrint(currentIteration, MSTGraph):
     global to_letter
+
+    output = f"Case {currentIteration}:\n"
     
     for elem in MSTGraph:
-        elem[0] = to_letter[elem[0]]
-        elem[1] = to_letter[elem[1]]
-    
-    return MSTGraph
+        output += f"{to_letter[elem[0]]}-{to_letter[elem[1]]} {elem[2]}\n"
 
+    stdout.write(output)
 
 
 iter = int(stdin.readline())
@@ -130,12 +131,13 @@ for i in range(1, iter + 1):
 
     # print(prettify(graph))
     MSTGraph = KruskalMST(number_of_vertex, graph)
-    print(prettify(MSTGraph))
+    prettyPrint(i, MSTGraph)
         
     ## ----> Reading of variables is tested and confirmed done correctly
     ## ----> Conversion of input is tested and confirmed done correctly
     ## ----> Prettyfi method is tested and confirmed done correctly
     ## ----> Kruskal algorithm inserted, tested with base case shown in premise, confirmed to be working correctly
+    ## ----> Finished adjusting the print function to satisfy the premise, tested and working correctly
     
     
     pass
