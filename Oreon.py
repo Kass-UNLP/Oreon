@@ -84,10 +84,6 @@ def KruskalMST(V, graph):
             j = j + 1
             MST_graph.append([u, v, w])
             union(parent, rank, x, y)
-
-    # print("MST:")
-    # for u, v, weight in MST_graph:
-    #     print("Edge from " + str(u) + " to " + str(v) + " with weight " + str(weight))
     
     return MST_graph
 
